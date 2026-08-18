@@ -185,12 +185,18 @@ button{cursor:pointer}
 /* 공통 공강 */
 .compare-grid{
   display:grid;
-  grid-template-columns:380px 1fr;
-  gap:20px;
+  grid-template-columns:300px minmax(0, 1fr);
+  gap:12px;
   align-items:start;
 }
+
 .metric{
-  border:0;border-radius:0;padding:0;background:#fff;
+  width:300px;
+  max-width:300px;
+  border:0;
+  border-radius:0;
+  padding:0;
+  background:#fff;
 }
 .metric small{
   display:block;color:#3d4554;font-weight:500;font-size:16px;margin-bottom:14px;
