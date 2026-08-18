@@ -2,9 +2,7 @@
    교사 시간표 웹앱 - style.css
    ========================================================= */
 
-/* =========================================================
-   1. 기본 설정
-   ========================================================= */
+/* ---------- 기본 설정 ---------- */
 
 * {
     box-sizing: border-box;
@@ -14,13 +12,8 @@ html,
 body {
     margin: 0;
     padding: 0;
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-
     background: #ffffff;
     color: #17213a;
-
     font-family:
         "Pretendard",
         "Noto Sans KR",
@@ -41,96 +34,73 @@ select {
 
 
 /* =========================================================
-   2. 전체 화면
+   전체 화면
    ========================================================= */
 
 .app-shell {
     display: flex;
-
     width: 100%;
-    max-width: 100%;
-
     min-height: 100vh;
-
-    overflow-x: hidden;
 }
 
 
 /* =========================================================
-   3. 왼쪽 사이드바
+   왼쪽 사이드바
    ========================================================= */
 
 .sidebar {
     position: fixed;
-
     top: 0;
     left: 0;
     bottom: 0;
 
     width: 320px;
-
     padding: 26px 20px;
 
     background: #ffffff;
-
     border-right: 1px solid #e3e7ee;
 
     overflow-y: auto;
-    overflow-x: hidden;
-
     z-index: 10;
 }
 
-
 .sidebar-title {
     display: flex;
-
     align-items: center;
-
     gap: 10px;
 
     margin-bottom: 28px;
 
     font-size: 25px;
     font-weight: 800;
-
     color: #14213d;
 }
-
 
 .sidebar-title .icon {
     font-size: 27px;
 }
 
 
-/* =========================================================
-   4. PDF 변경
-   ========================================================= */
+/* ---------- PDF 변경 ---------- */
 
 .pdf-box {
     margin-bottom: 22px;
 }
 
-
 .pdf-toggle {
     width: 100%;
-
     padding: 12px 14px;
 
     background: #ffffff;
-
     border: 1px solid #d7dce5;
     border-radius: 9px;
 
     font-size: 14px;
-
     text-align: left;
-
     color: #344054;
 
     cursor: pointer;
 }
-
 
 .pdf-toggle:hover {
     background: #f8fafc;
@@ -138,14 +108,13 @@ select {
 
 
 /* =========================================================
-   5. 교사 검색
+   검색
    ========================================================= */
 
 .teacher-search {
     width: 100%;
 
     margin: 10px 0 14px;
-
     padding: 11px 13px;
 
     border: 1px solid #dfe3ea;
@@ -156,52 +125,48 @@ select {
     outline: none;
 }
 
-
 .teacher-search:focus {
     border-color: #6c83f7;
 }
 
 
 /* =========================================================
-   6. 모두 선택해제 버튼
+   모두 선택해제
    ========================================================= */
 
 .clear-button {
     width: 100%;
 
     margin-bottom: 16px;
-
     padding: 9px 12px;
 
     background: #ffffff;
 
+    /* 버튼 테두리 색상 */
     border: 1px solid #cfd5df;
+
     border-radius: 8px;
 
     color: #35405a;
-
     font-size: 14px;
     font-weight: 500;
 
     cursor: pointer;
 }
 
-
 .clear-button:hover {
     background: #f6f8fb;
-
     border-color: #9da8bb;
 }
 
 
 /* =========================================================
-   7. 교사 이름 목록
+   교사 목록
    ========================================================= */
 
 .teacher-list {
     display: grid;
-
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, 1fr);
 
     gap: 7px 5px;
 
@@ -210,11 +175,8 @@ select {
     border-top: 1px solid #e5e7eb;
 }
 
-
 .teacher-button {
     width: 100%;
-
-    min-width: 0;
 
     padding: 6px 3px;
 
@@ -237,17 +199,13 @@ select {
         border-color 0.12s ease;
 }
 
-
 .teacher-button:hover {
     background: #f5f7fb;
-
     border-color: #aab3c3;
 }
 
-
 .teacher-button.selected {
     background: #f3f6ff;
-
     border-color: #7288f6;
 
     color: #253a85;
@@ -257,7 +215,7 @@ select {
 
 
 /* =========================================================
-   8. 메인 영역
+   메인 영역
    ========================================================= */
 
 .main-content {
@@ -265,26 +223,19 @@ select {
 
     width: calc(100% - 320px);
 
-    min-width: 0;
-
     padding: 38px 42px 60px;
-
-    overflow-x: hidden;
 }
-
 
 .content-inner {
     width: 100%;
     max-width: 1500px;
-
-    min-width: 0;
 
     margin: 0 auto;
 }
 
 
 /* =========================================================
-   9. 제목
+   제목
    ========================================================= */
 
 .page-title {
@@ -296,7 +247,6 @@ select {
     color: #17213a;
 }
 
-
 .page-subtitle {
     margin: 0 0 28px;
 
@@ -307,20 +257,19 @@ select {
 
 
 /* =========================================================
-   10. 구분선
+   구분선
    ========================================================= */
 
 .section-divider {
     margin: 34px 0;
 
     border: 0;
-
     border-top: 1px solid #e2e6ed;
 }
 
 
 /* =========================================================
-   11. 섹션 제목
+   섹션 제목
    ========================================================= */
 
 .section-title {
@@ -332,7 +281,6 @@ select {
     color: #17213a;
 }
 
-
 .section-description {
     margin: 0 0 25px;
 
@@ -343,12 +291,11 @@ select {
 
 
 /* =========================================================
-   12. 수업 중인 교사 찾기
+   수업 중인 교사 찾기
    ========================================================= */
 
 .class-search-controls {
     display: flex;
-
     align-items: flex-end;
 
     gap: 16px;
@@ -356,15 +303,12 @@ select {
     margin-bottom: 22px;
 }
 
-
 .control-group {
     display: flex;
-
     flex-direction: column;
 
     gap: 7px;
 }
-
 
 .control-group label {
     font-size: 14px;
@@ -372,7 +316,6 @@ select {
 
     color: #465066;
 }
-
 
 .control-group select {
     width: 180px;
@@ -391,12 +334,11 @@ select {
 
 
 /* =========================================================
-   13. 일반 결과 테이블
+   일반 테이블
    ========================================================= */
 
 .result-table {
     width: 100%;
-    max-width: 100%;
 
     border-collapse: separate;
     border-spacing: 0;
@@ -408,7 +350,6 @@ select {
 
     background: #ffffff;
 }
-
 
 .result-table th,
 .result-table td {
@@ -422,7 +363,6 @@ select {
     font-size: 14px;
 }
 
-
 .result-table th {
     background: #f7f8fa;
 
@@ -431,11 +371,9 @@ select {
     font-weight: 600;
 }
 
-
 .result-table tr:last-child td {
     border-bottom: 0;
 }
-
 
 .result-table th:last-child,
 .result-table td:last-child {
@@ -444,24 +382,19 @@ select {
 
 
 /* =========================================================
-   14. 공통 공강 영역
+   공통 공강 영역
    ========================================================= */
 
 .common-free-section {
     width: 100%;
-    max-width: 100%;
-
-    min-width: 0;
-
-    overflow: hidden;
 }
 
 
 /*
-   왼쪽 = 공통공강 글자
-   오른쪽 = 시간표
+   중요
+   왼쪽 공강정보 + 오른쪽 시간표
 
-   flex 방식으로 배치
+   Grid를 사용하지 않고 Flex로 강제 배치
 */
 
 .compare-grid {
@@ -471,18 +404,13 @@ select {
     justify-content: flex-start !important;
 
     width: 100% !important;
-    max-width: 100% !important;
-
-    min-width: 0 !important;
 
     gap: 18px !important;
-
-    overflow: hidden !important;
 }
 
 
 /* =========================================================
-   15. 왼쪽 공통 공강 정보
+   왼쪽 공통 공강 정보
    ========================================================= */
 
 .compare-grid > .metric {
@@ -493,7 +421,6 @@ select {
     max-width: 390px !important;
 
     margin: 0 !important;
-
     padding: 0 !important;
 
     background: #ffffff !important;
@@ -530,17 +457,15 @@ select {
 
 
 /* =========================================================
-   16. 요일별 공강
+   요일별 공강
    ========================================================= */
 
 .free-list {
     margin: 0;
-
     padding: 0;
 
     list-style: none;
 }
-
 
 .free-list li {
     margin: 0 0 5px;
@@ -555,105 +480,71 @@ select {
     white-space: nowrap;
 }
 
-
 .free-list strong {
     font-weight: 800;
 }
 
 
 /* =========================================================
-   17. 오른쪽 시간표 영역
+   오른쪽 공강 시간표
    ========================================================= */
 
 .compare-grid > div:nth-child(2) {
-    flex: 1 1 0 !important;
+    flex: 1 1 auto !important;
 
-    width: 0 !important;
-
+    width: auto !important;
     min-width: 0 !important;
-    max-width: 100% !important;
 
     margin: 0 !important;
-
     padding: 0 !important;
-
-    overflow: hidden !important;
 }
 
 
-/* =========================================================
-   18. 시간표 바깥 박스
-   ========================================================= */
+/* 시간표 박스 */
 
 .schedule-wrap {
-    display: block;
-
     width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
 
     margin: 0 !important;
-
     padding: 0 !important;
 
     border: 1px solid #dce2ea;
-
     border-radius: 20px;
 
-    /*
-       중요:
-       auto / scroll 사용하지 않음
-    */
-    overflow-x: hidden !important;
-    overflow-y: hidden !important;
+    overflow: hidden;
 
     background: #ffffff;
 
-    box-shadow:
-        0 3px 10px rgba(30, 40, 60, 0.04);
+    box-shadow: 0 3px 10px rgba(30, 40, 60, 0.04);
 }
 
 
 /* =========================================================
-   19. 공통 공강 시간표
+   시간표
    ========================================================= */
 
 .schedule-table {
-    width: 100% !important;
-
-    max-width: 100% !important;
-
-    min-width: 0 !important;
+    width: 100%;
 
     border-collapse: collapse;
 
-    table-layout: fixed !important;
-
-    margin: 0;
-
-    padding: 0;
+    table-layout: fixed;
 }
-
 
 .schedule-table th,
 .schedule-table td {
-    min-width: 0 !important;
-
     border-right: 1px solid #e1e5eb;
     border-bottom: 1px solid #e1e5eb;
 
     text-align: left;
 
     vertical-align: middle;
-
-    overflow: hidden;
 }
-
 
 .schedule-table th {
     height: 52px;
 
-    padding: 0 12px;
+    padding: 0 14px;
 
     background: #fafbfc;
 
@@ -663,65 +554,36 @@ select {
     font-weight: 600;
 }
 
-
 .schedule-table td {
     height: 58px;
 
-    padding: 8px 12px;
+    padding: 8px 14px;
 
     color: #283247;
 
     font-size: 16px;
 }
 
-
-/* =========================================================
-   20. 교시 열
-   ========================================================= */
-
 .schedule-table th:first-child,
 .schedule-table td:first-child {
-    width: 70px !important;
-
-    min-width: 70px !important;
-
-    max-width: 70px !important;
+    width: 80px;
 }
-
-
-/* =========================================================
-   21. 월 ~ 금 열
-   ========================================================= */
-
-.schedule-table th:not(:first-child),
-.schedule-table td:not(:first-child) {
-    width: auto !important;
-
-    min-width: 0 !important;
-
-    max-width: none !important;
-}
-
 
 .schedule-table th:last-child,
 .schedule-table td:last-child {
     border-right: 0;
 }
 
-
 .schedule-table tr:last-child td {
     border-bottom: 0;
 }
 
 
-/* =========================================================
-   22. 공강 표시
-   ========================================================= */
+/* 공강 표시 */
 
 .schedule-table td.free {
     background: #eef8ef;
 }
-
 
 .free-dot {
     display: inline-block;
@@ -736,13 +598,12 @@ select {
 
 
 /* =========================================================
-   23. CSV 다운로드
+   CSV 다운로드
    ========================================================= */
 
 .download-row {
     margin-top: 18px;
 }
-
 
 .download-button {
     display: inline-block;
@@ -752,7 +613,6 @@ select {
     background: #ffffff;
 
     border: 1px solid #d7dde6;
-
     border-radius: 8px;
 
     color: #35405a;
@@ -764,58 +624,41 @@ select {
     cursor: pointer;
 }
 
-
 .download-button:hover {
     background: #f7f9fb;
 }
 
 
 /* =========================================================
-   24. 선택 교사별 시간표
+   선택 교사별 시간표
    ========================================================= */
 
 .teacher-schedules {
-    width: 100%;
-
-    max-width: 100%;
-
     margin-top: 34px;
-
-    overflow: hidden;
 }
-
 
 .teacher-schedules-title {
     margin-bottom: 18px;
 
     font-size: 23px;
-
     font-weight: 800;
 
     color: #17213a;
 }
 
 
-/* =========================================================
-   25. 교사 시간표 접기 / 펼치기
-   ========================================================= */
+/* 교사 시간표 접기/펼치기 */
 
 .teacher-schedule-item {
-    width: 100%;
-
-    max-width: 100%;
-
     margin-bottom: 12px;
 
     border: 1px solid #dce1e9;
-
     border-radius: 8px;
 
     overflow: hidden;
 
     background: #ffffff;
 }
-
 
 .teacher-schedule-summary {
     padding: 13px 18px;
@@ -827,58 +670,47 @@ select {
     color: #30394d;
 }
 
-
 .teacher-schedule-summary:hover {
     background: #f8f9fb;
 }
 
 
 /* =========================================================
-   26. 개별 교사 시간표
+   개별 교사 시간표 글자
    ========================================================= */
 
 .teacher-schedule-table {
-    width: 100% !important;
-
-    max-width: 100% !important;
-
-    min-width: 0 !important;
+    width: 100%;
 
     border-collapse: collapse;
 
-    table-layout: fixed !important;
+    table-layout: fixed;
 }
 
-
 .teacher-schedule-table th {
-    padding: 14px 10px;
+    padding: 14px;
 
     background: #f8f9fb;
 
     border: 1px solid #e0e4ea;
 
     font-size: 17px;
-
     font-weight: 600;
 
     color: #7f8899;
 }
 
-
 .teacher-schedule-table td {
     height: 74px;
 
-    padding: 12px 14px;
+    padding: 12px 16px;
 
     border: 1px solid #e0e4ea;
 
     font-size: 17px;
-
     line-height: 1.4;
 
     color: #202a3f;
-
-    overflow-wrap: anywhere;
 }
 
 
@@ -886,12 +718,12 @@ select {
 
 .teacher-schedule-table th:first-child,
 .teacher-schedule-table td:first-child {
-    width: 80px;
+    width: 90px;
 }
 
 
 /* =========================================================
-   27. 1200px 이하
+   반응형
    ========================================================= */
 
 @media (max-width: 1200px) {
@@ -900,66 +732,48 @@ select {
         width: 285px;
     }
 
-
     .main-content {
         margin-left: 285px;
 
         width: calc(100% - 285px);
 
         padding-left: 28px;
-
         padding-right: 28px;
     }
 
-
     .compare-grid > .metric {
-        flex: 0 0 330px !important;
+        flex-basis: 350px !important;
 
-        width: 330px !important;
-
-        min-width: 330px !important;
-
-        max-width: 330px !important;
+        width: 350px !important;
+        min-width: 350px !important;
+        max-width: 350px !important;
     }
-
 
     .free-list li {
         font-size: 17px;
-    }
-
-
-    .schedule-table th,
-    .schedule-table td {
-        padding-left: 8px;
-
-        padding-right: 8px;
     }
 }
 
 
 /* =========================================================
-   28. 태블릿
+   태블릿 / 작은 화면
    ========================================================= */
 
 @media (max-width: 900px) {
-
-    .app-shell {
-        display: block;
-    }
-
 
     .sidebar {
         position: relative;
 
         width: 100%;
-
         height: auto;
 
         border-right: 0;
-
         border-bottom: 1px solid #e3e7ee;
     }
 
+    .app-shell {
+        display: block;
+    }
 
     .main-content {
         margin-left: 0;
@@ -969,54 +783,30 @@ select {
         padding: 25px 20px;
     }
 
-
-    /*
-       작은 화면에서는 공강 정보와 표를
-       위/아래로 배치
-    */
-
     .compare-grid {
         display: block !important;
-
-        width: 100% !important;
-
-        overflow: hidden !important;
     }
-
 
     .compare-grid > .metric {
         width: 100% !important;
-
         min-width: 0 !important;
-
         max-width: none !important;
 
         margin-bottom: 25px !important;
     }
 
-
-    .compare-grid > div:nth-child(2) {
-        width: 100% !important;
-
-        min-width: 0 !important;
-
-        max-width: 100% !important;
-    }
-
-
     .free-list li {
         white-space: normal;
     }
 
-
     .teacher-list {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
 
 /* =========================================================
-   29. 휴대폰
+   휴대폰
    ========================================================= */
 
 @media (max-width: 600px) {
@@ -1025,11 +815,9 @@ select {
         padding: 18px 14px;
     }
 
-
     .teacher-list {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(3, 1fr);
     }
-
 
     .teacher-button {
         font-size: 12px;
@@ -1037,125 +825,44 @@ select {
         padding: 6px 2px;
     }
 
-
     .main-content {
         padding: 20px 12px;
     }
-
 
     .page-title {
         font-size: 23px;
     }
 
-
     .section-title {
         font-size: 20px;
     }
-
 
     .metric-value {
         font-size: 36px;
     }
 
-
     .free-list li {
         font-size: 16px;
-
-        white-space: normal;
     }
-
 
     .schedule-table th,
     .schedule-table td {
-        padding-left: 5px;
-
-        padding-right: 5px;
+        padding-left: 7px;
+        padding-right: 7px;
 
         font-size: 13px;
     }
 
-
     .schedule-table th:first-child,
     .schedule-table td:first-child {
-        width: 48px !important;
-
-        min-width: 48px !important;
-
-        max-width: 48px !important;
+        width: 55px;
     }
-
 
     .class-search-controls {
         flex-wrap: wrap;
     }
 
-
     .control-group select {
         width: 140px;
     }
-
-
-    .teacher-schedule-table th,
-    .teacher-schedule-table td {
-        padding-left: 6px;
-
-        padding-right: 6px;
-
-        font-size: 13px;
-    }
-
-
-    .teacher-schedule-table th:first-child,
-    .teacher-schedule-table td:first-child {
-        width: 55px;
-    }
-}
-
-
-/* =========================================================
-   30. 가로 스크롤 최종 방지
-   ========================================================= */
-
-.main-content,
-.content-inner,
-.common-free-section,
-.compare-grid,
-.schedule-wrap,
-.teacher-schedules,
-.teacher-schedule-item {
-    max-width: 100% !important;
-
-    min-width: 0 !important;
-}
-
-
-.schedule-wrap {
-    overflow-x: hidden !important;
-}
-
-
-.schedule-table {
-    width: 100% !important;
-
-    max-width: 100% !important;
-
-    min-width: 0 !important;
-
-    table-layout: fixed !important;
-}
-
-
-/*
-   flex 자식이 내용 때문에 부모보다
-   커지는 현상을 방지
-*/
-
-.compare-grid > div:nth-child(2) {
-    flex: 1 1 0 !important;
-
-    width: 0 !important;
-
-    min-width: 0 !important;
-
-    overflow: hidden !important;
 }
