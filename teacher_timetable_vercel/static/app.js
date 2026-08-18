@@ -165,7 +165,7 @@ function freeLine(info){
 function daySummary(common){
   return DAYS.map(day=>{
     const ps = common.filter(([d])=>d===day).map(([,p])=>`${p}교시`);
-    return `<div><strong>${day}요일</strong>: ${ps.length?ps.join(", "):"공통 공강 없음"}</div>`;
+    return `<div><strong>${day}요일:</strong>  ${ps.length?ps.join(", "):"공통 공강 없음"}</div>`;
   }).join("");
 }
 
