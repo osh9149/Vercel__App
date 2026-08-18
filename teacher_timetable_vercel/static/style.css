@@ -184,8 +184,10 @@ button{cursor:pointer}
 
 /* 공통 공강 */
 .compare-grid{
-  display:grid;grid-template-columns:minmax(430px,1fr) minmax(600px,2.1fr);
-  gap:20px;align-items:start;
+  display:grid;
+  grid-template-columns:380px 1fr;
+  gap:20px;
+  align-items:start;
 }
 .metric{
   border:0;border-radius:0;padding:0;background:#fff;
