@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>교사 시간표 · 공강 비교</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="spinner"></div>
+    <div>시간표 PDF를 분석하고 있습니다...</div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-icon">▦</div>
+      <div>
+        <h1>교사 시간표</h1>
+        <p id="sourceInfo">기본 PDF 불러오는 중...</p>
+      </div>
+    </div>
+
+    <details class="pdf-box">
+      <summary>시간표 PDF 변경</summary>
+      <div class="upload-wrap">
+        <input id="pdfUpload" type="file" accept="application/pdf,.pdf" />
+        <button id="useDefaultBtn" class="small-btn">기본 PDF 다시 사용</button>
+        <p>Vercel 업로드는 약 4.5MB 이하 PDF를 권장합니다.</p>
+      </div>
+    </details>
+
+    <div class="search-wrap">
+      <span>⌕</span>
+      <input id="teacherSearch" type="text" placeholder="이름으로 검색..." autocomplete="off" />
+    </div>
+
+    <button id="clearBtn" class="clear-btn" disabled>모두 선택해제</button>
+
+    <div class="selected-summary">
+      <span>선택</span>
+      <strong id="selectedCount">0명</strong>
+    </div>
+
+    <div id="teacherGrid" class="teacher-grid"></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h2 id="pageTitle">조회할 교사를 선택하세요</h2>
+        <p id="pageSubTitle">왼쪽에서 교사 이름을 선택하세요.</p>
+      </div>
+      <button id="csvBtn" class="export-btn" disabled>CSV</button>
+    </header>
+
+    <section id="warningBox" class="warning-box hidden"></section>
+
+    <section id="content"></section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
