@@ -82,7 +82,7 @@ function renderWarnings(){
     return;
   }
   box.classList.remove("hidden");
-  box.innerHTML = `<strong>PDF 분석 확인사항 ${state.warnings.length}건</strong><br>` +
+  box.innerHTML = `<strong>PDF 분석 확인사항 ${state.warnings.length}건</strong> ` +
     state.warnings.slice(0,8).map(x=>escapeHtml(x)).join("<br>") +
     (state.warnings.length>8 ? `<br>외 ${state.warnings.length-8}건` : "");
 }

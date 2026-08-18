@@ -184,23 +184,28 @@ button{cursor:pointer}
 
 /* 공통 공강 */
 .compare-grid{
-  display:grid;grid-template-columns:minmax(260px,.85fr) minmax(620px,2.5fr);
+  display:grid;grid-template-columns:minmax(430px,1fr) minmax(600px,2.1fr);
   gap:40px;align-items:start;
 }
 .metric{
   border:0;border-radius:0;padding:0;background:#fff;
 }
 .metric small{
-  display:block;color:#4a5568;font-weight:500;font-size:13px;margin-bottom:10px;
+  display:block;color:#3d4554;font-weight:500;font-size:16px;margin-bottom:14px;
 }
 .metric strong{
-  display:block;font-size:48px;line-height:1.1;margin:0 0 38px;font-weight:400;
-  letter-spacing:-1px;color:#222b3b;
+  display:block;font-size:42px;line-height:1.12;margin:0 0 30px;
+  font-weight:400;letter-spacing:-1px;color:#222938;
 }
 .day-lines{
-  font-size:14px;line-height:1.8;color:#364152;
+  font-size:17px;line-height:1.55;color:#303746;
+  white-space:nowrap;
 }
-.day-lines strong{font-size:14px}
+.day-lines strong{
+  display:inline;
+  font-size:17px;
+  font-weight:800;
+}
 
 /* 수업 중인 교사 찾기 */
 .finder-controls{
