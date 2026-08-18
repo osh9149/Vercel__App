@@ -402,7 +402,8 @@ button{cursor:pointer}
   padding:8px 14px;
   text-align:left;
   vertical-align:middle;
-  font-size:12px;
+  font-size:14px;   /* 12px → 14px */
+  font-weight:600;  /* 새로 추가 */
   line-height:1.35;
   white-space:pre-line;
   color:#3e4858;
