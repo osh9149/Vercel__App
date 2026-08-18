@@ -172,18 +172,18 @@ function daySummary(common){
 function busyFinder(selectedNames){
   return `
     <section class="card">
-      <div class="card-title"><h3>🔎 선택 교사 중 수업 중인 교사 찾기</h3><span>공강 비교와 별개 기능</span></div>
-      <p class="help">요일과 교시를 선택하면, 현재 선택한 교사 중 그 시간에 실제 수업이 있는 교사만 표시합니다.</p>
+      <div class="card-title"><h3>🔎 선택 교사 중 수업 중인 교사 찾기</h3></div>
+      <p class="help">요일과 교시를 선택하면, 현재 선택한 교사들 가운데 그 시간에 실제 수업이 있는 교사만 표시합니다.</p>
       <div class="finder-controls">
         <div class="field">
           <label>요일</label>
-          <select id="busyDay">${DAYS.map(d=>`<option value="${d}">${d}요일</option>`).join("")}</select>
+          <select id="busyDay">${DAYS.map(d=>`<option value="${d}">${d}</option>`).join("")}</select>
         </div>
         <div class="field">
           <label>교시</label>
           <select id="busyPeriod">${PERIODS.map(p=>`<option value="${p}">${p}교시</option>`).join("")}</select>
         </div>
-        <button id="busyFindBtn" class="find-btn">수업 교사 보기</button>
+        <div id="busyCountWrap" class="metric-inline"></div>
       </div>
       <div id="busyResult" class="busy-result"></div>
     </section>`;
@@ -196,6 +196,13 @@ function runBusyFinder(){
   const busy = names
     .map(name=>({name, lesson: state.teachers[name].schedule[day][period] || ""}))
     .filter(x=>x.lesson);
+
+  const countWrap = el("busyCountWrap");
+  if(countWrap){
+    countWrap.innerHTML = `
+      <div style="font-size:12px;color:#3b4352;margin-bottom:8px">${day}요일 ${period}교시 수업 교사</div>
+      <div style="font-size:46px;line-height:1;font-weight:400;color:#202838">${busy.length}명</div>`;
+  }
 
   const box = el("busyResult");
   if(!busy.length){
@@ -248,7 +255,7 @@ function renderMain(){
 
   content.innerHTML = `
     <section class="card">
-      <div class="card-title"><h3>↔ 공통 공강시간</h3><span>선택한 모든 교사가 동시에 수업이 없는 시간</span></div>
+      <div class="card-title"><h3>↔ 공통 공강시간</h3></div><p class="help">선택한 모든 교사가 동시에 수업이 없는 시간입니다.</p>
       <div class="compare-grid">
         <div class="metric">
           <small>공통 공강</small>
@@ -274,7 +281,8 @@ function renderMain(){
       </div>
     </section>`;
 
-  el("busyFindBtn").addEventListener("click", runBusyFinder);
+  el("busyDay").addEventListener("change", runBusyFinder);
+  el("busyPeriod").addEventListener("change", runBusyFinder);
   runBusyFinder();
 }
 
