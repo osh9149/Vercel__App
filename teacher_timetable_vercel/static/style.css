@@ -1,290 +1,868 @@
+/* =========================================================
+   교사 시간표 웹앱 - style.css
+   ========================================================= */
 
-:root{
-  --brand:#5367e9;
-  --ink:#17213a;
-  --muted:#8b93a1;
-  --line:#e5e8ee;
-  --soft:#f7f8fa;
-  --green:#3f8a4f;
-  --green-soft:#eef7ef;
-}
-*{box-sizing:border-box}
-html,body{
-  margin:0;
-  min-height:100%;
-  font-family:Pretendard,"Noto Sans KR","Malgun Gothic",Arial,sans-serif;
-  color:var(--ink);
-  background:#fff;
-}
-button,input,select{font:inherit}
-button{cursor:pointer}
-.hidden{display:none!important}
+/* ---------- 기본 설정 ---------- */
 
-.loading-overlay{
-  position:fixed;inset:0;z-index:9999;background:rgba(255,255,255,.94);
-  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;
-  font-weight:700;color:#35415c
-}
-.spinner{
-  width:34px;height:34px;border:4px solid #e5e9f0;border-top-color:var(--brand);
-  border-radius:50%;animation:spin .8s linear infinite
-}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-/* ===== 왼쪽 고정 교사 목록 ===== */
-.sidebar{
-  position:fixed;left:0;top:0;bottom:0;width:318px;
-  background:#fff;border-right:1px solid var(--line);
-  padding:28px 22px 18px;overflow-y:auto;z-index:10;
-}
-.brand{
-  display:flex;gap:10px;align-items:center;
-  margin:44px 0 30px;
-}
-.brand-icon{
-  width:auto;height:auto;background:transparent;color:inherit;
-  display:block;font-size:28px;line-height:1;
-}
-.brand h1{
-  font-size:24px;margin:0;font-weight:850;letter-spacing:-.5px;
-}
-.brand p{display:none}
-
-.pdf-box{
-  border:1px solid #d8dde7;border-radius:11px;margin:0 0 25px;background:#fff;
-}
-.pdf-box summary{
-  padding:13px 16px;font-size:13px;font-weight:650;cursor:pointer;
-}
-.upload-wrap{padding:0 14px 14px}
-.upload-wrap input{width:100%;font-size:11px}
-.upload-wrap p{font-size:10px;color:var(--muted);margin:8px 0 0}
-.small-btn{
-  width:100%;margin-top:8px;border:1px solid var(--line);
-  background:#fff;border-radius:8px;padding:7px;font-size:11px;font-weight:700
+* {
+    box-sizing: border-box;
 }
 
-.search-wrap{
-  height:42px;background:#fff;border:0;border-radius:0;
-  display:flex;align-items:center;gap:6px;padding:0 0;margin:0 0 14px;
-}
-.search-wrap span{display:none}
-.search-wrap input{
-  border:0;outline:0;background:transparent;width:100%;
-  font-size:15px;color:#30394a;padding:0 1px;
-}
-.search-wrap input::placeholder{color:#949aa6}
-
-.clear-btn{
-  width:100%;height:38px;border:1px solid #d1d6df;border-radius:8px;
-  background:#fff;color:#26344f;font-size:13px;font-weight:650;margin-bottom:28px;
-}
-.clear-btn:disabled{opacity:.48;cursor:default}
-.selected-summary{display:none}
-
-.teacher-grid{
-  border-top:1px solid #e1e5ec;
-  padding-top:12px;
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:8px 4px;padding-bottom:18px;
-}
-.teacher-btn{
-  min-width:0;height:34px;border:1px solid #d5d9e2;border-radius:8px;
-  background:#fff;color:#273550;font-size:12px;font-weight:540;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 5px;text-align:center;
-}
-.teacher-btn:hover{background:#f7f8fb}
-.teacher-btn.selected{
-  background:#fff;color:#25334f;font-weight:700;border-color:#c8ced8;
-}
-.teacher-btn.selected::before{content:"✓";font-size:10px;margin-right:1px}
-
-/* ===== 메인 ===== */
-.main{margin-left:318px;min-height:100vh;background:#fff}
-.topbar{
-  min-height:182px;
-  border-bottom:1px solid var(--line);
-  display:flex;align-items:flex-start;justify-content:space-between;
-  padding:44px 106px 26px 96px;
-  position:relative;background:#fff;z-index:5;
-}
-.topbar h2{
-  font-size:25px;margin:0 0 18px;font-weight:850;letter-spacing:-.8px;
-}
-.topbar p{
-  font-size:13px;color:#8b93a1;margin:0;max-width:720px;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
-.export-btn{
-  width:336px;border:1px solid #dbe0e8;background:#fff;border-radius:10px;
-  height:45px;padding:0 15px;font-size:13px;font-weight:650;color:#3b4659;
-}
-.export-btn:disabled{opacity:.42;cursor:default}
-
-#content{padding:36px 106px 70px 96px}
-.warning-box{
-  margin:18px 106px 0 96px;background:#fff8e8;border:1px solid #f2d88f;
-  border-radius:12px;padding:10px 12px;font-size:11px;color:#765d17
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    color: #17213a;
+    font-family:
+        "Pretendard",
+        "Noto Sans KR",
+        "Apple SD Gothic Neo",
+        "Malgun Gothic",
+        sans-serif;
 }
 
-/* 각 영역을 카드보다 '섹션' 느낌으로 */
-.card{
-  border:0;border-radius:0;background:#fff;box-shadow:none;
-  padding:0;margin:0 0 48px;
-}
-.card + .card{
-  border-top:1px solid var(--line);
-  padding-top:38px;
-}
-.card-title{
-  display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 14px;
-}
-.card-title h3{
-  font-size:22px;margin:0;font-weight:850;letter-spacing:-.7px;
-}
-.card-title span{
-  font-size:11px;color:#9aa0aa;font-weight:500;
-}
-.help{
-  font-size:13px;color:#8b93a1;margin:0 0 24px;line-height:1.65;
+body {
+    min-height: 100vh;
 }
 
-/* 시간표 */
-.schedule-wrap{
-  overflow:auto;border:1px solid #dfe3ea;border-radius:20px;
-  box-shadow:0 2px 8px rgba(25,35,55,.04);
-}
-.schedule{
-  width:100%;border-collapse:collapse;table-layout:fixed;min-width:720px;
-}
-.schedule th{
-  background:#fafbfc;font-size:13px;height:54px;border-bottom:1px solid var(--line);
-  font-weight:500;color:#8a919d;text-align:left;padding-left:16px;
-}
-.schedule td{
-  height:58px;border-top:1px solid #e7eaef;border-right:1px solid #e7eaef;
-  padding:8px 14px;text-align:left;vertical-align:middle;font-size:12px;
-  line-height:1.35;white-space:pre-line;color:#3e4858;
-}
-.schedule th:first-child,.schedule td:first-child{
-  width:82px;font-weight:500;color:#7d8490;background:#fff;text-align:left;
-  padding-left:15px;
-}
-.schedule td.free{background:#fff;color:#fff;font-weight:400}
-.schedule td.dot{
-  font-size:19px;color:var(--green);font-weight:900;background:var(--green-soft);
+button,
+input,
+select {
+    font-family: inherit;
 }
 
-/* 공강 상세 */
-.free-line{
-  margin-top:16px;padding:0;background:transparent;border-radius:0;
-  font-size:13px;line-height:1.8;color:#374254;
-}
-.free-line strong{color:#202b40}
 
-/* 공통 공강 */
-.compare-grid{
-  display:grid;
-  grid-template-columns:300px minmax(0, 1fr);
-  gap:12px;
-  align-items:start;
+/* =========================================================
+   전체 화면
+   ========================================================= */
+
+.app-shell {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
 }
 
-.metric{
-  width:300px;
-  max-width:300px;
-  border:0;
-  border-radius:0;
-  padding:0;
-  background:#fff;
-}
-.metric small{
-  display:block;color:#3d4554;font-weight:500;font-size:16px;margin-bottom:14px;
-}
-.metric strong{
-  display:block;font-size:42px;line-height:1.12;margin:0 0 30px;
-  font-weight:400;letter-spacing:-1px;color:#222938;
-}
-.day-lines{
-  font-size:17px;line-height:1.55;color:#303746;
-  white-space:nowrap;
-}
-.day-lines strong{
-  display:inline;
-  font-size:17px;
-  font-weight:800;
+
+/* =========================================================
+   왼쪽 사이드바
+   ========================================================= */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    width: 320px;
+    padding: 26px 20px;
+
+    background: #ffffff;
+    border-right: 1px solid #e3e7ee;
+
+    overflow-y: auto;
+    z-index: 10;
 }
 
-/* 수업 중인 교사 찾기 */
-.finder-controls{
-  display:grid;grid-template-columns:225px 225px 1fr;
-  gap:18px;align-items:end;margin-bottom:26px;
-}
-.field label{
-  display:block;font-size:12px;color:#2d3647;font-weight:500;margin:0 0 10px;
-}
-.field select{
-  width:100%;height:48px;border:0;border-radius:10px;background:#f3f4f7;
-  padding:0 14px;font-size:13px;color:#303849;
-}
-.find-btn{
-  display:none;
-}
-.busy-result{
-  border:1px solid #dfe3ea;border-radius:18px;overflow:hidden;
-  display:block;background:#fff;
-}
-.busy-teacher{
-  display:grid;grid-template-columns:1fr 1.1fr;
-  border:0;border-bottom:1px solid #e7eaef;border-radius:0;
-  padding:13px 16px;background:#fff;
-}
-.busy-teacher:last-child{border-bottom:0}
-.busy-teacher strong{font-size:13px;font-weight:500}
-.busy-teacher div{font-size:13px;color:#4f596a;margin:0;line-height:1.4}
-.busy-result::before{
-  content:"교사                                              수업";
-  display:block;white-space:pre;
-  background:#fbfbfc;color:#8c939d;
-  border-bottom:1px solid #e7eaef;padding:12px 16px;font-size:12px;
+.sidebar-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 28px;
+
+    font-size: 25px;
+    font-weight: 800;
+    color: #14213d;
 }
 
-.teacher-details{
-  display:block;
-}
-.teacher-card{
-  border:1px solid #d9dee7;border-radius:9px;overflow:hidden;margin-bottom:10px;
-}
-.teacher-card summary{
-  padding:14px 18px;font-size:13px;font-weight:500;cursor:pointer;background:#fff;
-}
-.teacher-card .inner{padding:14px}
-
-.empty-message{
-  color:var(--muted);font-size:13px;padding:18px 16px;
+.sidebar-title .icon {
+    font-size: 27px;
 }
 
-/* 모바일 */
-@media (max-width:1050px){
-  .sidebar{width:285px;padding-left:16px;padding-right:16px}
-  .main{margin-left:285px}
-  .topbar{padding-left:44px;padding-right:44px}
-  #content{padding-left:44px;padding-right:44px}
-  .warning-box{margin-left:44px;margin-right:44px}
-  .compare-grid{grid-template-columns:1fr}
+
+/* ---------- PDF 변경 ---------- */
+
+.pdf-box {
+    margin-bottom: 22px;
 }
-@media (max-width:760px){
-  .sidebar{
-    position:relative;width:100%;height:auto;max-height:none;
-    border-right:0;border-bottom:1px solid var(--line);
-  }
-  .main{margin-left:0}
-  .teacher-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
-  .topbar{padding:24px 18px;min-height:auto}
-  #content{padding:24px 18px 50px}
-  .warning-box{margin:12px 18px 0}
-  .topbar{flex-direction:column;gap:18px}
-  .export-btn{width:100%}
-  .finder-controls{grid-template-columns:1fr 1fr}
-  .compare-grid{gap:20px}
+
+.pdf-toggle {
+    width: 100%;
+    padding: 12px 14px;
+
+    background: #ffffff;
+    border: 1px solid #d7dce5;
+    border-radius: 9px;
+
+    font-size: 14px;
+    text-align: left;
+    color: #344054;
+
+    cursor: pointer;
+}
+
+.pdf-toggle:hover {
+    background: #f8fafc;
+}
+
+
+/* =========================================================
+   검색
+   ========================================================= */
+
+.teacher-search {
+    width: 100%;
+
+    margin: 10px 0 14px;
+    padding: 11px 13px;
+
+    border: 1px solid #dfe3ea;
+    border-radius: 9px;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+.teacher-search:focus {
+    border-color: #6c83f7;
+}
+
+
+/* =========================================================
+   모두 선택해제
+   ========================================================= */
+
+.clear-button {
+    width: 100%;
+
+    margin-bottom: 16px;
+    padding: 9px 12px;
+
+    background: #ffffff;
+
+    /* 버튼 테두리 색상 */
+    border: 1px solid #cfd5df;
+
+    border-radius: 8px;
+
+    color: #35405a;
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+}
+
+.clear-button:hover {
+    background: #f6f8fb;
+    border-color: #9da8bb;
+}
+
+
+/* =========================================================
+   교사 목록
+   ========================================================= */
+
+.teacher-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 7px 5px;
+
+    padding-top: 12px;
+
+    border-top: 1px solid #e5e7eb;
+}
+
+.teacher-button {
+    width: 100%;
+
+    padding: 6px 3px;
+
+    background: #ffffff;
+
+    border: 1px solid #d8dde6;
+    border-radius: 7px;
+
+    color: #35405a;
+
+    font-size: 13px;
+    line-height: 1.15;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        background 0.12s ease,
+        border-color 0.12s ease;
+}
+
+.teacher-button:hover {
+    background: #f5f7fb;
+    border-color: #aab3c3;
+}
+
+.teacher-button.selected {
+    background: #f3f6ff;
+    border-color: #7288f6;
+
+    color: #253a85;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   메인 영역
+   ========================================================= */
+
+.main-content {
+    margin-left: 320px;
+
+    width: calc(100% - 320px);
+
+    padding: 38px 42px 60px;
+}
+
+.content-inner {
+    width: 100%;
+    max-width: 1500px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   제목
+   ========================================================= */
+
+.page-title {
+    margin: 0 0 6px;
+
+    font-size: 27px;
+    font-weight: 800;
+
+    color: #17213a;
+}
+
+.page-subtitle {
+    margin: 0 0 28px;
+
+    color: #8a93a4;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   구분선
+   ========================================================= */
+
+.section-divider {
+    margin: 34px 0;
+
+    border: 0;
+    border-top: 1px solid #e2e6ed;
+}
+
+
+/* =========================================================
+   섹션 제목
+   ========================================================= */
+
+.section-title {
+    margin: 0 0 12px;
+
+    font-size: 23px;
+    font-weight: 800;
+
+    color: #17213a;
+}
+
+.section-description {
+    margin: 0 0 25px;
+
+    font-size: 14px;
+
+    color: #9098a8;
+}
+
+
+/* =========================================================
+   수업 중인 교사 찾기
+   ========================================================= */
+
+.class-search-controls {
+    display: flex;
+    align-items: flex-end;
+
+    gap: 16px;
+
+    margin-bottom: 22px;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.control-group label {
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #465066;
+}
+
+.control-group select {
+    width: 180px;
+
+    padding: 10px 12px;
+
+    background: #f4f5f8;
+
+    border: 0;
+    border-radius: 8px;
+
+    color: #30394d;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   일반 테이블
+   ========================================================= */
+
+.result-table {
+    width: 100%;
+
+    border-collapse: separate;
+    border-spacing: 0;
+
+    border: 1px solid #dde2ea;
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    background: #ffffff;
+}
+
+.result-table th,
+.result-table td {
+    padding: 11px 14px;
+
+    border-right: 1px solid #e3e7ed;
+    border-bottom: 1px solid #e3e7ed;
+
+    text-align: left;
+
+    font-size: 14px;
+}
+
+.result-table th {
+    background: #f7f8fa;
+
+    color: #838c9e;
+
+    font-weight: 600;
+}
+
+.result-table tr:last-child td {
+    border-bottom: 0;
+}
+
+.result-table th:last-child,
+.result-table td:last-child {
+    border-right: 0;
+}
+
+
+/* =========================================================
+   공통 공강 영역
+   ========================================================= */
+
+.common-free-section {
+    width: 100%;
+}
+
+
+/*
+   중요
+   왼쪽 공강정보 + 오른쪽 시간표
+
+   Grid를 사용하지 않고 Flex로 강제 배치
+*/
+
+.compare-grid {
+    display: flex !important;
+
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+
+    width: 100% !important;
+
+    gap: 18px !important;
+}
+
+
+/* =========================================================
+   왼쪽 공통 공강 정보
+   ========================================================= */
+
+.compare-grid > .metric {
+    flex: 0 0 390px !important;
+
+    width: 390px !important;
+    min-width: 390px !important;
+    max-width: 390px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background: #ffffff !important;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+}
+
+
+/* "공통 공강" */
+
+.metric-label {
+    margin: 0 0 8px;
+
+    font-size: 18px;
+    font-weight: 500;
+
+    color: #333b4d;
+}
+
+
+/* "주 11교시" */
+
+.metric-value {
+    margin: 0 0 28px;
+
+    font-size: 44px;
+    line-height: 1.1;
+
+    font-weight: 400;
+
+    color: #252b3a;
+}
+
+
+/* =========================================================
+   요일별 공강
+   ========================================================= */
+
+.free-list {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.free-list li {
+    margin: 0 0 5px;
+
+    padding: 0;
+
+    font-size: 19px;
+    line-height: 1.35;
+
+    color: #17213a;
+
+    white-space: nowrap;
+}
+
+.free-list strong {
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   오른쪽 공강 시간표
+   ========================================================= */
+
+.compare-grid > div:nth-child(2) {
+    flex: 1 1 auto !important;
+
+    width: auto !important;
+    min-width: 0 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+/* 시간표 박스 */
+
+.schedule-wrap {
+    width: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    border: 1px solid #dce2ea;
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    box-shadow: 0 3px 10px rgba(30, 40, 60, 0.04);
+}
+
+
+/* =========================================================
+   시간표
+   ========================================================= */
+
+.schedule-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    table-layout: fixed;
+}
+
+.schedule-table th,
+.schedule-table td {
+    border-right: 1px solid #e1e5eb;
+    border-bottom: 1px solid #e1e5eb;
+
+    text-align: left;
+
+    vertical-align: middle;
+}
+
+.schedule-table th {
+    height: 52px;
+
+    padding: 0 14px;
+
+    background: #fafbfc;
+
+    color: #858e9f;
+
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.schedule-table td {
+    height: 58px;
+
+    padding: 8px 14px;
+
+    color: #283247;
+
+    font-size: 16px;
+}
+
+.schedule-table th:first-child,
+.schedule-table td:first-child {
+    width: 80px;
+}
+
+.schedule-table th:last-child,
+.schedule-table td:last-child {
+    border-right: 0;
+}
+
+.schedule-table tr:last-child td {
+    border-bottom: 0;
+}
+
+
+/* 공강 표시 */
+
+.schedule-table td.free {
+    background: #eef8ef;
+}
+
+.free-dot {
+    display: inline-block;
+
+    width: 14px;
+    height: 14px;
+
+    background: #4d9154;
+
+    border-radius: 50%;
+}
+
+
+/* =========================================================
+   CSV 다운로드
+   ========================================================= */
+
+.download-row {
+    margin-top: 18px;
+}
+
+.download-button {
+    display: inline-block;
+
+    padding: 9px 15px;
+
+    background: #ffffff;
+
+    border: 1px solid #d7dde6;
+    border-radius: 8px;
+
+    color: #35405a;
+
+    font-size: 14px;
+
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+.download-button:hover {
+    background: #f7f9fb;
+}
+
+
+/* =========================================================
+   선택 교사별 시간표
+   ========================================================= */
+
+.teacher-schedules {
+    margin-top: 34px;
+}
+
+.teacher-schedules-title {
+    margin-bottom: 18px;
+
+    font-size: 23px;
+    font-weight: 800;
+
+    color: #17213a;
+}
+
+
+/* 교사 시간표 접기/펼치기 */
+
+.teacher-schedule-item {
+    margin-bottom: 12px;
+
+    border: 1px solid #dce1e9;
+    border-radius: 8px;
+
+    overflow: hidden;
+
+    background: #ffffff;
+}
+
+.teacher-schedule-summary {
+    padding: 13px 18px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    color: #30394d;
+}
+
+.teacher-schedule-summary:hover {
+    background: #f8f9fb;
+}
+
+
+/* =========================================================
+   개별 교사 시간표 글자
+   ========================================================= */
+
+.teacher-schedule-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    table-layout: fixed;
+}
+
+.teacher-schedule-table th {
+    padding: 14px;
+
+    background: #f8f9fb;
+
+    border: 1px solid #e0e4ea;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    color: #7f8899;
+}
+
+.teacher-schedule-table td {
+    height: 74px;
+
+    padding: 12px 16px;
+
+    border: 1px solid #e0e4ea;
+
+    font-size: 17px;
+    line-height: 1.4;
+
+    color: #202a3f;
+}
+
+
+/* 교시 열 */
+
+.teacher-schedule-table th:first-child,
+.teacher-schedule-table td:first-child {
+    width: 90px;
+}
+
+
+/* =========================================================
+   반응형
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+    .sidebar {
+        width: 285px;
+    }
+
+    .main-content {
+        margin-left: 285px;
+
+        width: calc(100% - 285px);
+
+        padding-left: 28px;
+        padding-right: 28px;
+    }
+
+    .compare-grid > .metric {
+        flex-basis: 350px !important;
+
+        width: 350px !important;
+        min-width: 350px !important;
+        max-width: 350px !important;
+    }
+
+    .free-list li {
+        font-size: 17px;
+    }
+}
+
+
+/* =========================================================
+   태블릿 / 작은 화면
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .sidebar {
+        position: relative;
+
+        width: 100%;
+        height: auto;
+
+        border-right: 0;
+        border-bottom: 1px solid #e3e7ee;
+    }
+
+    .app-shell {
+        display: block;
+    }
+
+    .main-content {
+        margin-left: 0;
+
+        width: 100%;
+
+        padding: 25px 20px;
+    }
+
+    .compare-grid {
+        display: block !important;
+    }
+
+    .compare-grid > .metric {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: none !important;
+
+        margin-bottom: 25px !important;
+    }
+
+    .free-list li {
+        white-space: normal;
+    }
+
+    .teacher-list {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+
+/* =========================================================
+   휴대폰
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .sidebar {
+        padding: 18px 14px;
+    }
+
+    .teacher-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .teacher-button {
+        font-size: 12px;
+
+        padding: 6px 2px;
+    }
+
+    .main-content {
+        padding: 20px 12px;
+    }
+
+    .page-title {
+        font-size: 23px;
+    }
+
+    .section-title {
+        font-size: 20px;
+    }
+
+    .metric-value {
+        font-size: 36px;
+    }
+
+    .free-list li {
+        font-size: 16px;
+    }
+
+    .schedule-table th,
+    .schedule-table td {
+        padding-left: 7px;
+        padding-right: 7px;
+
+        font-size: 13px;
+    }
+
+    .schedule-table th:first-child,
+    .schedule-table td:first-child {
+        width: 55px;
+    }
+
+    .class-search-controls {
+        flex-wrap: wrap;
+    }
+
+    .control-group select {
+        width: 140px;
+    }
 }
