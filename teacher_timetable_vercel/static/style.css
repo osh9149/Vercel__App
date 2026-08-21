@@ -855,3 +855,74 @@ button{cursor:pointer}
     gap:20px;
   }
 }
+
+
+/* =========================================================
+   V7 - 관리자 비밀번호 + 현재 브라우저 전용 PDF 변경
+   ========================================================= */
+
+.admin-panel{
+  padding:0 14px 14px;
+}
+
+.admin-label{
+  display:block;
+  margin:4px 0 7px;
+  font-size:11px;
+  font-weight:700;
+  color:#455066;
+}
+
+.admin-password-row{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 62px;
+  gap:6px;
+}
+
+.admin-password-row input{
+  width:100%;
+  height:34px;
+  border:1px solid #d8dde6;
+  border-radius:7px;
+  padding:0 9px;
+  outline:none;
+  font-size:12px;
+}
+
+.admin-password-row input:focus{
+  border-color:#7183e9;
+}
+
+.admin-unlock-btn{
+  height:34px;
+  margin-top:0 !important;
+}
+
+.admin-message{
+  min-height:15px;
+  margin:5px 0 0;
+  color:#d34b4b;
+  font-size:10px;
+}
+
+.admin-ok{
+  margin:3px 0 10px;
+  color:#2f7d46;
+  font-size:11px;
+  font-weight:800;
+}
+
+.admin-note{
+  margin:9px 0;
+  padding:8px 9px;
+  border-radius:7px;
+  background:#f5f7fb;
+  color:#687386;
+  font-size:10px;
+  line-height:1.5;
+}
+
+#adminUploadArea input[type="file"]{
+  width:100%;
+  font-size:10px;
+}

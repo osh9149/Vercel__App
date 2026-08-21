@@ -2,6 +2,9 @@
 const DAYS = ["월","화","수","목","금"];
 const PERIODS = ["1","2","3","4","5","6","7"];
 
+const LOCAL_TIMETABLE_KEY = "teacher_timetable_local_override_v1";
+const ADMIN_PASSWORD = "2580"; // 화면 잠금용. 원하는 비밀번호로 바꿔도 됩니다.
+
 let state = {
   teachers: {},
   teacherNames: [],
@@ -27,9 +30,26 @@ function compactCell(text){
 async function loadDefault(){
   setLoading(true);
   try{
+    const saved = localStorage.getItem(LOCAL_TIMETABLE_KEY);
+
+    if(saved){
+      try{
+        const body = JSON.parse(saved);
+        body.source = "내 브라우저 PDF";
+        applyData(body, true);
+        return;
+      }catch(e){
+        localStorage.removeItem(LOCAL_TIMETABLE_KEY);
+      }
+    }
+
     const res = await fetch("/api/timetable");
     const body = await res.json();
-    if(!res.ok) throw new Error(body.detail || "기본 시간표를 불러오지 못했습니다.");
+
+    if(!res.ok){
+      throw new Error(body.detail || "기본 시간표를 불러오지 못했습니다.");
+    }
+
     applyData(body, true);
   }catch(err){
     alert(err.message);
@@ -40,18 +60,44 @@ async function loadDefault(){
 
 async function uploadPdf(file){
   if(!file) return;
+
   if(file.size > 4_500_000){
-    alert("PDF가 너무 큽니다. Vercel에서는 약 4.5MB 이하 PDF를 사용해 주세요.");
+    alert("PDF가 너무 큽니다. 약 4.5MB 이하 PDF를 사용해 주세요.");
     return;
   }
+
   setLoading(true, "업로드한 PDF를 분석하고 있습니다...");
+
   try{
     const fd = new FormData();
     fd.append("file", file);
-    const res = await fetch("/api/timetable", {method:"POST", body:fd});
+
+    const res = await fetch("/api/timetable", {
+      method:"POST",
+      body:fd
+    });
+
     const body = await res.json();
-    if(!res.ok) throw new Error(body.detail || "PDF 분석에 실패했습니다.");
-    applyData(body, true);
+
+    if(!res.ok){
+      throw new Error(body.detail || "PDF 분석에 실패했습니다.");
+    }
+
+    const localBody = {
+      source: "내 브라우저 PDF",
+      filename: file.name,
+      teachers: body.teachers,
+      warnings: body.warnings || []
+    };
+
+    localStorage.setItem(
+      LOCAL_TIMETABLE_KEY,
+      JSON.stringify(localBody)
+    );
+
+    applyData(localBody, true);
+
+    alert("새 시간표가 이 브라우저에만 적용되었습니다.");
   }catch(err){
     alert(err.message);
   }finally{
@@ -322,6 +368,36 @@ function escapeHtml(v){
     .replaceAll("'","&#039;");
 }
 
+
+function unlockAdmin(){
+  const input = el("adminPassword");
+  const message = el("adminMessage");
+
+  if(input.value === ADMIN_PASSWORD){
+    el("adminLockArea").classList.add("hidden");
+    el("adminUploadArea").classList.remove("hidden");
+    message.textContent = "";
+    sessionStorage.setItem("teacher_timetable_admin_unlocked", "1");
+  }else{
+    message.textContent = "비밀번호가 올바르지 않습니다.";
+    input.select();
+  }
+}
+
+function restoreAdminUnlockState(){
+  if(sessionStorage.getItem("teacher_timetable_admin_unlocked") === "1"){
+    el("adminLockArea").classList.add("hidden");
+    el("adminUploadArea").classList.remove("hidden");
+  }
+}
+
+el("adminUnlockBtn").addEventListener("click", unlockAdmin);
+el("adminPassword").addEventListener("keydown", e=>{
+  if(e.key === "Enter"){
+    unlockAdmin();
+  }
+});
+
 el("teacherSearch").addEventListener("input", renderTeacherGrid);
 el("clearBtn").addEventListener("click", ()=>{
   state.selected.clear();
@@ -330,6 +406,29 @@ el("clearBtn").addEventListener("click", ()=>{
 });
 el("csvBtn").addEventListener("click", downloadCsv);
 el("pdfUpload").addEventListener("change", e=>uploadPdf(e.target.files?.[0]));
-el("useDefaultBtn").addEventListener("click", loadDefault);
+el("useDefaultBtn").addEventListener("click", async ()=>{
+  localStorage.removeItem(LOCAL_TIMETABLE_KEY);
+  state.selected.clear();
+  el("teacherSearch").value = "";
 
+  setLoading(true, "기본 시간표로 되돌리고 있습니다...");
+
+  try{
+    const res = await fetch("/api/timetable");
+    const body = await res.json();
+
+    if(!res.ok){
+      throw new Error(body.detail || "기본 시간표를 불러오지 못했습니다.");
+    }
+
+    applyData(body, true);
+    alert("기본 시간표로 되돌렸습니다.");
+  }catch(err){
+    alert(err.message);
+  }finally{
+    setLoading(false);
+  }
+});
+
+restoreAdminUnlockState();
 loadDefault();

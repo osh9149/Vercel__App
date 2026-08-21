@@ -21,14 +21,36 @@
       </div>
     </div>
 
-    <details class="pdf-box">
-      <summary>시간표 PDF 변경</summary>
-      <div class="upload-wrap">
-        <input id="pdfUpload" type="file" accept="application/pdf,.pdf" />
-        <button id="useDefaultBtn" class="small-btn">기본 PDF 다시 사용</button>
-        <p>Vercel 업로드는 약 4.5MB 이하 PDF를 권장합니다.</p>
+    
+<details class="pdf-box" id="pdfAdminBox">
+  <summary>🔒 시간표 PDF 변경</summary>
+
+  <div class="admin-panel">
+    <div id="adminLockArea">
+      <label class="admin-label" for="adminPassword">관리자 비밀번호</label>
+      <div class="admin-password-row">
+        <input id="adminPassword" type="password" placeholder="비밀번호 입력" autocomplete="off" />
+        <button id="adminUnlockBtn" class="small-btn admin-unlock-btn">확인</button>
       </div>
-    </details>
+      <p id="adminMessage" class="admin-message"></p>
+    </div>
+
+    <div id="adminUploadArea" class="hidden">
+      <div class="admin-ok">✓ 관리자 확인</div>
+
+      <label class="admin-label" for="pdfUpload">새 시간표 PDF</label>
+      <input id="pdfUpload" type="file" accept="application/pdf,.pdf" />
+
+      <p class="admin-note">
+        업로드한 시간표는 <b>현재 브라우저에서만</b> 사용됩니다.<br>
+        다른 사용자에게는 영향을 주지 않습니다.
+      </p>
+
+      <button id="useDefaultBtn" class="small-btn">기본 시간표로 되돌리기</button>
+    </div>
+  </div>
+</details>
+
 
     <div class="search-wrap">
       <span>⌕</span>
