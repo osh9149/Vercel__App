@@ -3,7 +3,7 @@ const DAYS = ["월","화","수","목","금"];
 const PERIODS = ["1","2","3","4","5","6","7"];
 
 const LOCAL_TIMETABLE_KEY = "teacher_timetable_local_override_v1";
-const ADMIN_PASSWORD = "2580"; // 화면 잠금용. 원하는 비밀번호로 바꿔도 됩니다.
+const ADMIN_PASSWORD = "7216"; // 화면 잠금용. 원하는 비밀번호로 바꿔도 됩니다.
 
 let state = {
   teachers: {},
